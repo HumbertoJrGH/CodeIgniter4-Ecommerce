@@ -12,10 +12,7 @@ class DatabaseTest extends BaseController
 		try {
 			$db = \Config\Database::connect();
 			$algo = $db->query("SELECT * FROM ecommerce.produtos;");
-			echo 'Conexão com o banco de dados bem-sucedida!';
-			echo "<pre>";
-			print_r($algo->getResult());
-			echo "</pre>";
+			return view("manage_main");
 		} catch (\Exception $e) {
 			echo 'Erro ao conectar com o banco de dados: ' . $e->getMessage();
 		}
