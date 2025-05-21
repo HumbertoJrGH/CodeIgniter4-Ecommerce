@@ -23,14 +23,4 @@ class Home extends BaseController
         ];
         return view('home', $data);
     }
-
-    public function buscar()
-    {
-        $termo = $this->request->getGet("q");
-
-        $model = new Produto();
-        $produtos = $model->like("nome", $termo)->findAll();
-
-        return view("home", ["produtos" => $produtos]);
-    }
 }
