@@ -1,6 +1,8 @@
 <?= $this->extend('layout') ?>
 
 <?= $this->section('title') ?>
+Bem vindo!
+<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <div class="grid grid-cols-5 gap-4 p-8">
