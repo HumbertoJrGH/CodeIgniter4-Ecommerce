@@ -5,7 +5,9 @@ Painel Administrativo
 <?= $this->endSection() ?>
 
 <?= $this->section('aside') ?>
-<a href="<?= base_url('/') ?>">Voltar</a>
+<a href="<?= base_url('/') ?>" class="px-4 cursor-pointer py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">
+	Voltar
+</a>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
