@@ -5,8 +5,52 @@ Este repositório é base de estudo do framework CodIgniter na versão 4 onde in
 
 ## Instruções
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+Primeiro configure o banco com o seguinte SQL:
+```SQL
+DROP DATABASE ecommerce;
+CREATE DATABASE ecommerce;
+USE ecommerce;
+
+CREATE TABLE produto (
+  id int NOT NULL AUTO_INCREMENT,
+  nome varchar(255) DEFAULT NULL,
+  descrição TEXT DEFAULT NULL,
+  preço float DEFAULT NULL,
+  variação varchar(255) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE cupom (
+  id int NOT NULL,
+  percentual float DEFAULT NULL,
+  nome varchar(255) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE estoque (
+  id_produto int DEFAULT NULL,
+  quantidade int DEFAULT NULL,
+  KEY FK_ESTOQUE_PRODUTO (id_produto),
+  CONSTRAINT FK_ESTOQUE_PRODUTO FOREIGN KEY (id_produto) REFERENCES produto (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE pedido (
+  id int NOT NULL,
+  data_pedido datetime DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE item_pedido (
+  id_pedido int DEFAULT NULL,
+  id_produto int DEFAULT NULL,
+  KEY FK_ITEM_PEDIDO_PEDIDO (id_pedido),
+  KEY FK_ITEM_PEDIDO_PRODUTO (id_produto),
+  CONSTRAINT FK_ITEM_PEDIDO_PEDIDO FOREIGN KEY (id_pedido) REFERENCES pedido (id),
+  CONSTRAINT FK_ITEM_PEDIDO_PRODUTO FOREIGN KEY (id_produto) REFERENCES produto (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+
+Configure as credenciais básicas do seu banco no arquivo `.env` conforme seu ambiente para que o projeto se conecte corretamente a base de dados MySQL.
 
 ## Important Change with index.php
 

@@ -5,12 +5,12 @@ use CodeIgniter\Model;
 
 class Produto extends Model
 {
-	protected $table = "produtos";
+	protected $table = "produto";
 	protected $dbGroup = "ecommerce";
 	protected $allowedFields = [
 		'nome',
-		'descricao',
-		'preco',
-		'imagem',
+		'descrição',
+		'preço',
+		'variação',
 	];
 }

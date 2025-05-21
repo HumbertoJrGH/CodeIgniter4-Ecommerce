@@ -19,20 +19,15 @@
 		<header class="bg-white shadow p-4">
 			<div class="container mx-auto flex items-center justify-between">
 				<h1 class="text-xl font-bold text-gray-800">E-commerce</h1>
-				<a href="<?= base_url('admin') ?>"
-					class="text-sm bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition">
-					Entrar como administrador
-				</a>
-
 			</div>
 		</header>
 
 		<div class="flex">
-			<aside class="w-1/5 p-4 bg-blue-200">
-				<a href="#">Click em mim</a>
+			<aside class="w-1/5 p-4 bg-cyan-100">
+				<?= $this->renderSection('aside') ?>
 			</aside>
 
-			<main class="w-4/5">
+			<main class="w-4/5" style="min-height: calc(100vh - 60px);">
 				<?= $this->renderSection('content') ?>
 			</main>
 		</div>

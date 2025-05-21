@@ -2,51 +2,35 @@
 
 namespace App\Controllers;
 
+use App\Models\Produto;
+
 class Home extends BaseController
 {
     public function index(): string
     {
+        $produtos = [];
+        try {
+            $model = new Produto();
+            $produtos = $model->findAll();
+        } catch (\Exception $e) {
+            // Log the error message
+            exit($e->getMessage());
+            // log_message('error', 'Error fetching products: ' . $e->getMessage());
+        }
         $data = [
-            'nome' => 'Humberto',
-            "produtos" => [
-                [
-                    "nome" => "Camisa", 
-                    "descricao" => "Descrição longa do produto para tentar provocar quebra de linha e colocarmos um \"ellipsis\" no bloco necessário com hover com o texto completo para o cliente.",
-                    "preco" => 50.00,
-                    "variacao" => "Vermelha",
-                ],
-                [
-                    "nome" => "Camisa", 
-                    "descricao" => "Descrição do Produto",
-                    "preco" => 50.00,
-                    "variacao" => "Azul",
-                ],
-                [
-                    "nome" => "Camisa", 
-                    "descricao" => "Descrição do Produto",
-                    "preco" => 50.00,
-                    "variacao" => "Verde",
-                ],
-                [
-                    "nome" => "Camisa", 
-                    "descricao" => "Descrição do Produto",
-                    "preco" => 50.00,
-                    "variacao" => "Roxa",
-                ],
-                [
-                    "nome" => "Camisa", 
-                    "descricao" => "Descrição do Produto",
-                    "preco" => 50.00,
-                    "variacao" => "Branca",
-                ],
-                [
-                    "nome" => "Camisa", 
-                    "descricao" => "Descrição do Produto",
-                    "preco" => 50.00,
-                    "variacao" => "Preta",
-                ],
-            ],
+            "nome" => "Usuário",
+            "produtos" => $produtos
         ];
         return view('home', $data);
+    }
+
+    public function buscar()
+    {
+        $termo = $this->request->getGet("q");
+
+        $model = new Produto();
+        $produtos = $model->like("nome", $termo)->findAll();
+
+        return view("home", ["produtos" => $produtos]);
     }
 }
