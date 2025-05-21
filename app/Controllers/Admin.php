@@ -23,4 +23,22 @@ class Admin extends BaseController
 
         return view("admin/index", ["produtos" => $produtos]);
     }
+
+    public function inserir()
+    {
+        $produtoModel = new Produto();
+
+        $data = $this->request->getPost([
+            'nome',
+            'descricao',
+            'preco',
+            'variacao',
+        ]);
+
+        if ($produtoModel->insert($data)) {
+            return redirect()->to('/admin')->with('success', 'Produto cadastrado com sucesso!');
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Erro ao salvar.');
+        }
+    }
 }
