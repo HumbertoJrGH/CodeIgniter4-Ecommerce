@@ -84,14 +84,20 @@ Painel Administrativo
 
 
 
-		<div class="grid grid-cols-5 gap-4 p-8">
+		<div class="">
 			<?php foreach ($produtos as $produto): ?>
-				<?= view('partials/product_card', [
-					'nome' => $produto['nome'],
-					'descricao' => $produto['descrição'],
-					'preco' => $produto['preço'],
-					'variacao' => $produto['variação'],
-				]) ?>
+				<div class="bg-white rounded-lg shadow hover:shadow-lg transition flex flex-col overflow-hidden">
+					<div class="p-4 flex gap-3">
+						<?= $produto['nome'] ?>
+						<?= $produto['descrição'] ?>
+						<?= $produto['preço'] ?>
+						<?= $produto['variação'] ?>
+
+						<button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded">
+							Editar
+						</button>
+					</div>
+				</div>
 			<?php endforeach; ?>
 		</div>
 	</div>
