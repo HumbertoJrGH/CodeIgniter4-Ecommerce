@@ -39,7 +39,6 @@ Painel Administrativo
 				<span x-show="aberto">Fechar</span>
 			</button>
 
-			<!-- Formulário colapsável -->
 			<div
 				x-show="aberto"
 				x-transition
@@ -84,18 +83,28 @@ Painel Administrativo
 
 
 
-		<div class="">
+		<div class="flex gap-3 flex-col overflow-hidden">
 			<?php foreach ($produtos as $produto): ?>
-				<div class="bg-white rounded-lg shadow hover:shadow-lg transition flex flex-col overflow-hidden">
-					<div class="p-4 flex gap-3">
-						<?= $produto['nome'] ?>
-						<?= $produto['descrição'] ?>
-						<?= $produto['preço'] ?>
-						<?= $produto['variação'] ?>
+				<div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+					<div class="p-3 flex items-center justify-between gap-3">
+						<div class="w-1/5">
+							<?= $produto['nome'] ?>
+						</div>
+						<div class="w-1/5">
+							<?= $produto['descrição'] ?>
+						</div>
+						<div class="w-1/5">
+							<?= $produto['preço'] ?>
+						</div>
+						<div class="w-1/5">
+							<?= $produto['variação'] ?>
+						</div>
+						<div class="w-1/5 text-end">
+							<button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded">
+								Editar
+							</button>
+						</div>
 
-						<button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded">
-							Editar
-						</button>
 					</div>
 				</div>
 			<?php endforeach; ?>

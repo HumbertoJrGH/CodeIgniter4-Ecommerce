@@ -13,10 +13,10 @@ Bem vindo!
 
 <?= $this->section('content') ?>
 <div>
-	<div class="p-4 m-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+	<div class="m-4 p-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
 		<span class="font-medium"><?= count($produtos) ?> produtos encontrados!</span> Crie novos produtos acessando <a href="admin" class="text-bold font-vold">aqui</a>.
 	</div>
-	<div class="grid grid-cols-5 gap-4 p-8">
+	<div class="grid grid-cols-5 gap-4 m-4">
 		<?php foreach ($produtos as $produto): ?>
 			<?= view('partials/product_card', [
 				'nome' => $produto['nome'],
